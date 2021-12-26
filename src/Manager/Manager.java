@@ -1,12 +1,11 @@
 package Manager;
-import java.util.Scanner;
 
-import FilesWorker.MyFilesWorker;
+import MyFilesWorker.MyFilesWorker;
+
 import Game.*;
 import Menu.*;
-import Game.MyCharacter;
 
-
+import java.util.Scanner;
 
 
 public class Manager
@@ -17,6 +16,7 @@ public class Manager
     Work work = new Work();
     Study study = new Study();
     Scanner scanner = new Scanner(System.in);
+    MyFilesWorker myFilesWorker = new MyFilesWorker();
 
     public void WriteMainMenu()
     {
@@ -102,10 +102,7 @@ public class Manager
 
     public void saveFile()
     {
-        // String text = hero.get_Name() + " "+
-          //      hero.get_sex() + " "+hero.get_marks()+
-            //    " " + hero.get_money()+" "+ hero.get_moral_points();
-        MyFilesWorker.inputInformationOnFile(hero);
+        ;
     }
 
     public void rest_polyana(){rest.go_to_polyana(hero);}
