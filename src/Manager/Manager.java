@@ -1,6 +1,6 @@
 package Manager;
 
-import MyFilesWorker.MyFilesWorker;
+//import MyFilesWorker.MyFilesWorker;
 
 import Game.*;
 import Menu.*;
@@ -15,8 +15,9 @@ public class Manager
     Rest rest = new Rest();
     Work work = new Work();
     Study study = new Study();
+    Shop shop = new Shop();
     Scanner scanner = new Scanner(System.in);
-    MyFilesWorker myFilesWorker = new MyFilesWorker();
+    //MyFilesWorker myFilesWorker = new MyFilesWorker();
 
     public void WriteMainMenu()
     {
@@ -26,6 +27,7 @@ public class Manager
     public void WriteWorkMenu(){WorkMenu.create_menu();}
     public void WriteStudyMenu(){StudyMenu.create_menu();}
     public void WriteRestMenu(){RestMenu.create_menu();}
+    public void WriteShopMenu(){ShopMenu.create_menu();}
 
     public void startNewGame()
     {
@@ -64,14 +66,35 @@ public class Manager
            {
                case "1":
                    WriteRestMenu();
+                   System.out.println("\n");
+                   WindowCharacter.Window(hero);
+                   input = scanner.nextLine();
+                   Rest_choose(input);
 
                    break;
                case "2":
                    WriteStudyMenu();
+                   System.out.println("\n");
+                   WindowCharacter.Window(hero);
+                   input = scanner.nextLine();
+                   Study_choose(input);
 
                    break;
                case "3":
                    WriteWorkMenu();
+                   System.out.println("\n");
+                   WindowCharacter.Window(hero);
+                   input =scanner.nextLine();
+                   Work_choose(input);
+
+                   break;
+
+               case"4":
+                   WriteShopMenu();
+                   System.out.println("\n");
+                   WindowCharacter.Window(hero);
+                   input = scanner.nextLine();
+                   Shop_choose(input);
 
                    break;
                case"0":
@@ -89,6 +112,55 @@ public class Manager
 
     }
 
+    public void Rest_choose(String input)
+    {
+        if(input.equals("1"))
+            rest_polyana();
+        if(input.equals("2"))
+            rest_cart();
+        if(input.equals("3"))
+            rest_alchogol();
+        if(input.equals("4"))
+            rest_gachimuchi();
+    }
+
+    public void Study_choose(String input)
+    {
+        if(input.equals("1"))
+            study_lab();
+        if(input.equals("2"))
+            study_homework();
+        if(input.equals("3"))
+            study_university();
+        if(input.equals("4"))
+            study_kursovaya();
+    }
+
+    public void Work_choose(String input)
+    {
+        if(input.equals("1"))
+            work_dance();
+        if(input.equals("2"))
+            work_coder();
+        if(input.equals("3"))
+            work_listovki();
+        if(input.equals("4"))
+            work_senior();
+    }
+
+    public void Shop_choose(String input)
+    {
+        if(input.equals("1"))
+            shop_coursework();
+        if(input.equals("2"))
+            shop_diploma();
+        if(input.equals("3"))
+            shop_girl();
+        if(input.equals("4"))
+            shop_drink();
+    }
+
+
 
     public void continueOldGame()
     {
@@ -104,6 +176,15 @@ public class Manager
     {
         ;
     }
+
+    public  void shop_coursework(){shop.buy_coursework(hero);}
+
+    public  void shop_diploma(){shop.buy_diploma(hero);}
+
+    public  void shop_girl(){shop.buy_girl(hero);}
+
+    public  void shop_drink(){shop.buy_drink(hero);}
+
 
     public void rest_polyana(){rest.go_to_polyana(hero);}
 

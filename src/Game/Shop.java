@@ -2,7 +2,7 @@ package Game;
 
 import java.sql.SQLOutput;
 
-public class Shop {
+public  class Shop {
 
     ChangeAtributs changeAtributs = new ChangeAtributs();
 
