@@ -1,4 +1,6 @@
 package Manager;
+import java.lang.reflect.Method;
+import java.util.HashMap;
 import java.util.Scanner;
 
 import Game.*;
@@ -62,6 +64,7 @@ public class Manager
            {
                case "1":
                    WriteRestMenu();
+
                    break;
                case "2":
                    WriteStudyMenu();
@@ -78,7 +81,7 @@ public class Manager
 
        }while(!input.equals("0"));
 
-       
+
     }
 
 

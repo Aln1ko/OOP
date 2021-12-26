@@ -1,7 +1,10 @@
 package Main;
-import Manager.Manager;
+import Manager.*;
 
+import java.lang.reflect.Method;
+import java.util.HashMap;
 import java.util.Scanner;
+import java.util.function.Function;
 
 
 public class Main
@@ -10,6 +13,9 @@ public class Main
 
         Scanner scanner = new Scanner(System.in);
         Manager manager = new Manager();
+        HashMap<String,Function> map = new HashMap<String,Function>();
+        map.put("Start_Game", manager.startNewGame());
+
 
         String input ;
         do {
@@ -20,6 +26,7 @@ public class Main
             {
                 case "1":
                     manager.startNewGame();
+
                     break;
                 case "2":
                     manager.continueOldGame();

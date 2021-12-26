@@ -3,6 +3,7 @@ package Game;
 public class Rest
 {
     ChangeAtributs changeAtributs = new ChangeAtributs();
+
     public void go_to_polyana(Character hero)//пойти на поляну
     {
         changeAtributs.change_money(hero,-3);
