@@ -28,7 +28,7 @@ public class Work
     {
         if(hero.get_marks() < 150)
         {
-            System.out.println("Недомтаточно очков , иди танцевать, тут все жлобы не для кого танцевать");
+            System.out.println("You marks is bad,go study before doing this work\n");
             return 0;
         }
         changeAtributs.change_money(hero, 100);

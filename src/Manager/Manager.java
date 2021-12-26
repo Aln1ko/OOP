@@ -1,12 +1,10 @@
 package Manager;
-//import Game.
-
-import Game.Character;
-import Game.Difficult_Game;
-import Game.Rest;
-import Game.Work;
-import Game.Study;
 import java.util.Scanner;
+
+import Game.*;
+import Menu.*;
+import Game.Character;
+
 
 
 
@@ -18,6 +16,15 @@ public class Manager
     Work work = new Work();
     Study study = new Study();
     Scanner scanner = new Scanner(System.in);
+
+    public void WriteMainMenu()
+    {
+        MainMenu.create_menu();
+    }
+    public void WriteGameMenu(){GameMenu.create_menu();}
+    public void WriteWorkMenu(){WorkMenu.create_menu();}
+    public void WriteStudyMenu(){StudyMenu.create_menu();}
+    public void WriteRestMenu(){RestMenu.create_menu();}
 
     public void startNewGame()
     {
@@ -40,6 +47,54 @@ public class Manager
         hero.set_sex(sex);
         int number = Integer.parseInt(difficult);
         diff_game.fill_difficult(hero,number);
+    }
+
+    public void game_process()
+    {
+       Scanner scanner = new Scanner(System.in);
+       String input;
+
+       do {
+           WriteGameMenu();
+           input = scanner.nextLine();
+
+           switch (input)
+           {
+               case "1":
+                   WriteRestMenu();
+                   break;
+               case "2":
+                   WriteStudyMenu();
+                   break;
+               case "3":
+                   WriteWorkMenu();
+                   break;
+               case"0":
+                   break;
+               default:
+                   System.out.println("Command not recognized, please try again");
+
+           }
+
+       }while(!input.equals("0"));
+
+       
+    }
+
+
+    public void continueOldGame()
+    {
+        ;
+    }
+
+    public void openAchievementsFile()
+    {
+        ;
+    }
+
+    public void saveFile()
+    {
+        ;
     }
 
     public void rest_polyana(){rest.go_to_polyana(hero);}

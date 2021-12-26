@@ -1,8 +1,7 @@
 package Menu;
 
-public interface Menu
+ interface Menu
 {
     public static void create_menu(){};
-
 }
 
