@@ -2,7 +2,7 @@ package Game;
 
 public class Difficult_Game
 {
-    public void fill_difficult(Character hero, int diff)
+    public void fill_difficult(MyCharacter hero, int diff)
     {
         if (diff == 1)
         {

@@ -1,18 +1,17 @@
 package Manager;
-import java.lang.reflect.Method;
-import java.util.HashMap;
 import java.util.Scanner;
 
+import FilesWorker.MyFilesWorker;
 import Game.*;
 import Menu.*;
-import Game.Character;
+import Game.MyCharacter;
 
 
 
 
 public class Manager
 {
-    Character hero = new Character();
+    MyCharacter hero = new MyCharacter();
     Difficult_Game diff_game = new Difficult_Game();
     Rest rest = new Rest();
     Work work = new Work();
@@ -55,6 +54,7 @@ public class Manager
     {
        Scanner scanner = new Scanner(System.in);
        String input;
+       int number_of_step =0;
 
        do {
            WriteGameMenu();
@@ -68,15 +68,20 @@ public class Manager
                    break;
                case "2":
                    WriteStudyMenu();
+
                    break;
                case "3":
                    WriteWorkMenu();
+
                    break;
                case"0":
+
                    break;
+
                default:
                    System.out.println("Command not recognized, please try again");
 
+                number_of_step++;
            }
 
        }while(!input.equals("0"));
@@ -97,7 +102,10 @@ public class Manager
 
     public void saveFile()
     {
-        ;
+        // String text = hero.get_Name() + " "+
+          //      hero.get_sex() + " "+hero.get_marks()+
+            //    " " + hero.get_money()+" "+ hero.get_moral_points();
+        MyFilesWorker.inputInformationOnFile(hero);
     }
 
     public void rest_polyana(){rest.go_to_polyana(hero);}

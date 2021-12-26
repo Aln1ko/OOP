@@ -13,8 +13,8 @@ public class Main
 
         Scanner scanner = new Scanner(System.in);
         Manager manager = new Manager();
-        HashMap<String,Function> map = new HashMap<String,Function>();
-        map.put("Start_Game", manager.startNewGame());
+        //HashMap<String,Function> map = new HashMap<String,Function>();
+        //map.put("Start_Game",manager.startNewGame());
 
 
         String input ;
@@ -28,15 +28,20 @@ public class Main
                     manager.startNewGame();
 
                     break;
+
                 case "2":
                     manager.continueOldGame();
+
                     break;
+
                 case "3":
                     manager.openAchievementsFile();
                     break;
+
                 case "4" :
                     manager.saveFile();
                     break;
+
                 default:
                     System.out.println("Command not recognized, please try again");
             }

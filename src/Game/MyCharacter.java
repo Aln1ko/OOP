@@ -1,6 +1,6 @@
 package Game;
 
-public class Character
+public class MyCharacter
 {
     private String Name;
     private int money;
@@ -8,14 +8,18 @@ public class Character
     private int moral_points;
     private String sex;
 
-    public Character(String name,String sex)
+    public MyCharacter(String name, String sex)
     {
         this.sex = sex;
         this.Name = name;
     }
 
-    public Character()
+    public MyCharacter()
     {}
+
+    public String get_Name(){return Name;}
+
+    public String get_sex(){return sex;}
 
     public void set_Name(String name){this.Name = name;}
 

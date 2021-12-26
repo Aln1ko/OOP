@@ -4,27 +4,27 @@ public class Work
 {
     ChangeAtributs changeAtributs = new ChangeAtributs();
 
-    public void go_to_dance(Character hero)//
+    public void go_to_dance(MyCharacter hero)//
     {
         changeAtributs.change_money(hero, 50);
         changeAtributs.change_marks(hero, 0);
         changeAtributs.change_moral_points(hero, -30);
     }
 
-    public void coder_work(Character hero) {
+    public void coder_work(MyCharacter hero) {
         changeAtributs.change_money(hero, 70);
         changeAtributs.change_marks(hero, 10);
         changeAtributs.change_moral_points(hero, -50);
     }
 
-    public void rozdavat_listovki(Character hero)
+    public void rozdavat_listovki(MyCharacter hero)
     {
         changeAtributs.change_money(hero, 30);
         changeAtributs.change_marks(hero, 0);
         changeAtributs.change_moral_points(hero, -15);
     }
 
-    public int  senior_work(Character hero)
+    public int  senior_work(MyCharacter hero)
     {
         if(hero.get_marks() < 150)
         {
