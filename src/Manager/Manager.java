@@ -17,7 +17,7 @@ public class Manager
     Study study = new Study();
     Shop shop = new Shop();
     Scanner scanner = new Scanner(System.in);
-    //MyFilesWorker myFilesWorker = new MyFilesWorker();
+    MyFWorker myFilesWorker = new MyFWorker();
 
     public void WriteMainMenu()
     {
@@ -44,6 +44,14 @@ public class Manager
 
     }
 
+    public void proverka(MyCharacter hero)
+    {
+        if (hero.get_marks() < 0 || hero.get_money() < 0 || hero.get_moral_points() < 0);
+        {
+            System.out.println("Game over");
+        }
+    }
+
     public void create_hero(String name , String sex, String difficult )
     {
         hero.set_Name(name);
@@ -62,11 +70,13 @@ public class Manager
            WriteGameMenu();
            input = scanner.nextLine();
 
+
+
            switch (input)
            {
                case "1":
                    WriteRestMenu();
-                   System.out.println("\n");
+                   System.out.println("");
                    WindowCharacter.Window(hero);
                    input = scanner.nextLine();
                    Rest_choose(input);
@@ -74,7 +84,7 @@ public class Manager
                    break;
                case "2":
                    WriteStudyMenu();
-                   System.out.println("\n");
+                   System.out.println("");
                    WindowCharacter.Window(hero);
                    input = scanner.nextLine();
                    Study_choose(input);
@@ -82,7 +92,7 @@ public class Manager
                    break;
                case "3":
                    WriteWorkMenu();
-                   System.out.println("\n");
+                   System.out.println("");
                    WindowCharacter.Window(hero);
                    input =scanner.nextLine();
                    Work_choose(input);
@@ -91,7 +101,7 @@ public class Manager
 
                case"4":
                    WriteShopMenu();
-                   System.out.println("\n");
+                   System.out.println("");
                    WindowCharacter.Window(hero);
                    input = scanner.nextLine();
                    Shop_choose(input);

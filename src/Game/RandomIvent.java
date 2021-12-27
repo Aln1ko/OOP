@@ -14,6 +14,7 @@ public class RandomIvent extends Ivents {
 
     public void make_KP (MyCharacter hero)
     {
+
         changeAtributs.change_marks(hero, a + (int) (Math.random() * b));
         changeAtributs.change_moral_points(hero, -(a + (int) (Math.random() * b)));
     }

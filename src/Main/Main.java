@@ -26,7 +26,7 @@ public class Main
             {
                 case "1":
                     manager.startNewGame();
-
+                    manager.game_process();
                     break;
 
                 case "2":
@@ -34,11 +34,8 @@ public class Main
 
                     break;
 
-                case "3":
-                    manager.openAchievementsFile();
-                    break;
 
-                case "4" :
+                case "3" :
                     manager.saveFile();
                     break;
 

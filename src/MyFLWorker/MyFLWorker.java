@@ -2,12 +2,12 @@ import Game.MyCharacter;
 
 import java.io.*;
 
-public class MyFilesWorker
+public class MyFLWorker
 {
     public void inputInformationOnFile(MyCharacter hero) {
 
-        String textName = (MyCharacter.get_Name(hero)); // строка для записи
-        try(FileOutputStream fos=new FileOutputStream("путь к файлу который мы хотим 1"))
+        String textName = (hero.get_Name()); // строка для записи
+        try(FileOutputStream fos=new FileOutputStream("D:\\java_files\\laba-1\\Name.txt"))
         {
             // перевод строки в байты
             byte[] buffer = textName.getBytes();
@@ -19,8 +19,9 @@ public class MyFilesWorker
             System.out.println(ex.getMessage());
         }
 
-        String textMoney = (MyCharacter.get_money(hero)); // строка для записи
-        try(FileOutputStream fos=new FileOutputStream("путь к файлу который мы хотим 2"))
+        int money = hero.get_money();
+        String textMoney = Integer.toString(money); // строка для записи
+        try(FileOutputStream fos=new FileOutputStream("D:\\java_files\\laba-1\\Money.txt"))
         {
             // перевод строки в байты
             byte[] buffer = textMoney.getBytes();
@@ -32,8 +33,10 @@ public class MyFilesWorker
             System.out.println(ex.getMessage());
         }
 
-        String textMarks = (MyCharacter.get_marks(hero)); // строка для записи
-        try(FileOutputStream fos=new FileOutputStream("путь к файлу который мы хотим 3"))
+        int marks = hero.get_marks();
+
+        String textMarks = Integer.toString(marks); // строка для записи
+        try(FileOutputStream fos=new FileOutputStream("D:\\java_files\\laba-1\\Marks.txt"))
         {
             // перевод строки в байты
             byte[] buffer = textMarks.getBytes();
@@ -45,9 +48,9 @@ public class MyFilesWorker
             System.out.println(ex.getMessage());
         }
 
-
-        String textMoralPoints = (MyCharacter.get_moral_points(hero)); // строка для записи
-        try(FileOutputStream fos=new FileOutputStream("путь к файлу который мы хотим 4"))
+        int moral_points = hero.get_moral_points();
+        String textMoralPoints = Integer.toString(moral_points); // строка для записи
+        try(FileOutputStream fos=new FileOutputStream("D:\\java_files\\laba-1\\MoralPoints.txt"))
         {
             // перевод строки в байты
             byte[] buffer = textMoralPoints.getBytes();
@@ -59,8 +62,8 @@ public class MyFilesWorker
             System.out.println(ex.getMessage());
         }
 
-        String textSex = (MyCharacter.get_sex(hero)); // строка для записи
-        try(FileOutputStream fos=new FileOutputStream("путь к файлу который мы хотим 5"))
+        String textSex = hero.get_sex(); // строка для записи
+        try(FileOutputStream fos=new FileOutputStream("D:\\java_files\\laba-1\\Sex.txt"))
         {
             // перевод строки в байты
             byte[] buffer = textSex.getBytes();
@@ -76,7 +79,7 @@ public class MyFilesWorker
 
     public static void outputInformationOnFile(MyCharacter hero) {
 
-        try(FileInputStream fin=new FileInputStream("путь к файлу который мы хотим1"))
+        try(FileInputStream fin=new FileInputStream("D:\\java_files\\laba-1\\Name.txt"))
         {
 
             int i=-1;
@@ -87,15 +90,15 @@ public class MyFilesWorker
                 templ[count]=(char)i;
                 count++;
             }
-            String myStr = new String.valueOf(templ);
-            hero.set_Name=myStr;
+            String myStr =  String.valueOf(templ);
+            hero.set_Name(myStr);
         }
         catch(IOException ex){
 
             System.out.println(ex.getMessage());
         }
 
-        try(FileInputStream fin=new FileInputStream("путь к файлу который мы хотим2"))
+        try(FileInputStream fin=new FileInputStream("D:\\java_files\\laba-1\\Money.txt"))
         {
 
             int i=-1;
@@ -106,15 +109,16 @@ public class MyFilesWorker
                 templ[count]=(char)i;
                 count++;
             }
-            String myStr = new String.valueOf(templ);
-            hero.set_money=myStr;
+            String myStr =  String.valueOf(templ);
+            int money = Integer.parseInt(myStr);
+            hero.set_money(money);
         }
         catch(IOException ex){
 
             System.out.println(ex.getMessage());
         }
 
-        try(FileInputStream fin=new FileInputStream("путь к файлу который мы хотим3"))
+        try(FileInputStream fin=new FileInputStream("D:\\java_files\\laba-1\\Marks.txt"))
         {
 
             int i=-1;
@@ -125,15 +129,16 @@ public class MyFilesWorker
                 templ[count]=(char)i;
                 count++;
             }
-            String myStr = new String.valueOf(templ);
-            hero.set_marks=myStr;
+            String myStr =  String.valueOf(templ);
+            int marks = Integer.parseInt(myStr);
+            hero.set_marks(marks);
         }
         catch(IOException ex){
 
             System.out.println(ex.getMessage());
         }
 
-        try(FileInputStream fin=new FileInputStream("путь к файлу который мы хотим4"))
+        try(FileInputStream fin=new FileInputStream("D:\\java_files\\laba-1\\MoralPoints.txt"))
         {
 
             int i=-1;
@@ -143,15 +148,17 @@ public class MyFilesWorker
                 templ[count]=(char)i;
                 count++;
             }
-            String myStr = new String.valueOf(templ);
-            hero.set_moral_points=myStr;
+
+            String myStr =  String.valueOf(templ);
+            int moral_points = Integer.parseInt(myStr);
+            hero.set_moral_points(moral_points);
         }
         catch(IOException ex){
 
             System.out.println(ex.getMessage());
         }
 
-        try(FileInputStream fin=new FileInputStream("путь к файлу который мы хотим5"))
+        try(FileInputStream fin=new FileInputStream("D:\\java_files\\laba-1\\Sex.txt"))
         {
 
             int i=-1;
@@ -162,8 +169,8 @@ public class MyFilesWorker
                 templ[count]=(char)i;
                 count++;
             }
-            String myStr = new String.valueOf(templ);
-            hero.set_sex=myStr;
+            String myStr =  String.valueOf(templ);
+            hero.set_sex(myStr);
         }
         catch(IOException ex){
 
