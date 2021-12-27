@@ -1,3 +1,4 @@
+
 package MyFLWorker;
 
 import Game.MyCharacter;
@@ -21,8 +22,22 @@ public class MyFLWorker
             System.out.println(ex.getMessage());
         }
 
+        int steps = hero.get_number_of_step();
+        String textMoney = Integer.toString(steps); // строка для записи
+        try(FileOutputStream fos=new FileOutputStream("D:\\java_files\\laba-1\\Steps.txt"))
+        {
+            // перевод строки в байты
+            byte[] buffer = textMoney.getBytes();
+
+            fos.write(buffer, 0, buffer.length);
+        }
+        catch(IOException ex){
+
+            System.out.println(ex.getMessage());
+        }
+
         int money = hero.get_money();
-        String textMoney = Integer.toString(money); // строка для записи
+        String textSteps = Integer.toString(money); // строка для записи
         try(FileOutputStream fos=new FileOutputStream("D:\\java_files\\laba-1\\Money.txt"))
         {
             // перевод строки в байты
@@ -81,10 +96,10 @@ public class MyFLWorker
 
     public static void outputInformationOnFile(MyCharacter hero) {
 
-        try(FileInputStream fin = new FileInputStream("D:\\java_files\\laba-1\\Name.txt"))
+        try(FileReader fin = new FileReader("D:\\java_files\\laba-1\\Name.txt"))
         {
 
-            int i=-1;
+            int i;
             Character[] templ = new Character[20];
             int count = 0;
             while((i=fin.read())!=-1){
@@ -100,10 +115,29 @@ public class MyFLWorker
             System.out.println(ex.getMessage());
         }
 
-        try(FileInputStream fin = new FileInputStream("D:\\java_files\\laba-1\\Money.txt"))
+        try(FileReader fin = new FileReader("D:\\java_files\\laba-1\\Steps.txt"))
         {
 
-            int i=-1;
+            int i;
+            Character[] templ = new Character[20];
+            int count = 0;
+            while((i=fin.read())!=-1){
+
+                templ[count]=(char)i;
+                count++;
+            }
+            String myStr =  String.valueOf(templ);
+            int steps = Integer.parseInt(myStr);
+            hero.set_number_of_step(steps);
+        }
+        catch(IOException ex){
+
+            System.out.println(ex.getMessage());
+        }
+
+        try(FileReader fin = new FileReader("D:\\java_files\\laba-1\\Money.txt"))
+        {
+            int i;
             Character[] templ = new Character[20];
             int count = 0;
             while((i=fin.read())!=-1){
@@ -120,10 +154,10 @@ public class MyFLWorker
             System.out.println(ex.getMessage());
         }
 
-        try(FileInputStream fin=new FileInputStream("D:\\java_files\\laba-1\\Marks.txt"))
+        try(FileReader fin=new FileReader("D:\\java_files\\laba-1\\Marks.txt"))
         {
 
-            int i=-1;
+            int i;
             Character[] templ = new Character[20];
             int count = 0;
             while((i=fin.read())!=-1){
@@ -140,10 +174,10 @@ public class MyFLWorker
             System.out.println(ex.getMessage());
         }
 
-        try(FileInputStream fin=new FileInputStream("D:\\java_files\\laba-1\\MoralPoints.txt"))
+        try(FileReader fin=new FileReader("D:\\java_files\\laba-1\\MoralPoints.txt"))
         {
 
-            int i=-1;
+            int i;
             Character[] templ = new Character[20];
             int count = 0;
             while((i=fin.read())!=-1){
@@ -160,10 +194,10 @@ public class MyFLWorker
             System.out.println(ex.getMessage());
         }
 
-        try(FileInputStream fin=new FileInputStream("D:\\java_files\\laba-1\\Sex.txt"))
+        try(FileReader fin=new FileReader("D:\\java_files\\laba-1\\Sex.txt"))
         {
 
-            int i=-1;
+            int i;
             Character[] templ = new Character[20];
             int count = 0;
             while((i=fin.read())!=-1){

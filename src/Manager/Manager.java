@@ -20,6 +20,7 @@ public class Manager
     Scanner scanner = new Scanner(System.in);
     MyFLWorker myFilesWorker = new MyFLWorker();
     EndGame endGame = new EndGame();
+    Ivents ivents = new Ivents();
 
     public void WriteMainMenu()
     {
@@ -30,6 +31,15 @@ public class Manager
     public void WriteStudyMenu(){StudyMenu.create_menu();}
     public void WriteRestMenu(){RestMenu.create_menu();}
     public void WriteShopMenu(){ShopMenu.create_menu();}
+
+    public void ivent_on_step(MyCharacter hero)
+    {
+        ivents.Boxonov(hero,hero.get_number_of_step());
+        ivents.Kipusha(hero, hero.get_number_of_step());
+        ivents.Petrenko(hero,hero.get_number_of_step());
+        ivents.IventOnStep(hero,hero.get_number_of_step());
+
+    }
 
     public void startNewGame()
     {
@@ -48,7 +58,8 @@ public class Manager
 
     public void proverka(MyCharacter hero)
     {
-        if (hero.get_marks() < 0 || hero.get_money() < 0 || hero.get_moral_points() < 0);
+        if (hero.get_marks() < 0 || hero.get_money() < 0
+                || hero.get_moral_points() < 0)
         {
            endGame.EndGameBeforeLoss(hero);
         }
@@ -66,11 +77,14 @@ public class Manager
     {
        Scanner scanner = new Scanner(System.in);
        String input;
-       
+
 
        do {
+           ivent_on_step(hero);
            WriteGameMenu();
            input = scanner.nextLine();
+
+
 
            switch (input)
            {
@@ -80,7 +94,9 @@ public class Manager
                    WriteRestMenu();
                    input = scanner.nextLine();
                    Rest_choose(input);
+
                    proverka(hero);
+
                    WindowCharacter.Window(hero);
                    System.out.println("");
                    hero.set_number_of_step(hero.get_number_of_step()+1);
@@ -197,6 +213,7 @@ public class Manager
     {
 
         myFilesWorker.inputInformationOnFile(hero);
+
     }
 
 

@@ -7,16 +7,13 @@ public class MyCharacter
     private int marks;
     private int moral_points;
     private String sex;
-    private int number_of_step = 0;
+    private int number_of_step;
 
-    public MyCharacter(String name, String sex)
-    {
-        this.sex = sex;
-        this.Name = name;
-    }
 
     public MyCharacter()
-    {}
+    {
+        number_of_step = 1;
+    }
 
     public int get_number_of_step(){return number_of_step;}
 

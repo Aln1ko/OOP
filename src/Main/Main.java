@@ -30,7 +30,7 @@ public class Main
 
                 case "2":
                     manager.continueOldGame();
-
+                    manager.game_process();
                     break;
 
 
