@@ -81,7 +81,7 @@ public class MyFLWorker
 
     public static void outputInformationOnFile(MyCharacter hero) {
 
-        try(FileInputStream fin=new FileInputStream("D:\\java_files\\laba-1\\Name.txt"))
+        try(FileInputStream fin = new FileInputStream("D:\\java_files\\laba-1\\Name.txt"))
         {
 
             int i=-1;
@@ -100,7 +100,7 @@ public class MyFLWorker
             System.out.println(ex.getMessage());
         }
 
-        try(FileInputStream fin=new FileInputStream("D:\\java_files\\laba-1\\Money.txt"))
+        try(FileInputStream fin = new FileInputStream("D:\\java_files\\laba-1\\Money.txt"))
         {
 
             int i=-1;

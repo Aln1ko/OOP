@@ -23,7 +23,7 @@ public class Study {
 
     public int napisat_kursovu(MyCharacter hero) {
         if (hero.get_marks() < 120) {
-            System.out.println("Иди учись!");
+            System.out.println("Go study!");
             return 0;
         }
         changeAtributs.change_money(hero, 0);

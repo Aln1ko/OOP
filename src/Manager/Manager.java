@@ -39,7 +39,7 @@ public class Manager
         name = scanner.nextLine();
         System.out.println("Choose your sex: ");
         sex  = scanner.nextLine();
-        System.out.println("Choose difficult of the game 1, 2 or 3 : ");
+        System.out.println("Choose difficult of the game 1, 2 or 3 (1-All stats-50,2-All stats-30,3-All stats-10)");
         difficult = scanner.nextLine();
         create_hero(name,sex,difficult);
 
@@ -181,17 +181,14 @@ public class Manager
 
     public void continueOldGame()
     {
-        ;
+
+        myFilesWorker.inputInformationOnFile(hero);
     }
 
-    public void openAchievementsFile()
-    {
-        ;
-    }
 
     public void saveFile()
     {
-        ;
+        myFilesWorker.inputInformationOnFile(hero);
     }
 
     public  void shop_coursework(){shop.buy_coursework(hero);}

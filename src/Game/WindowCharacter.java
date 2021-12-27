@@ -8,21 +8,21 @@ public class WindowCharacter {
     {
         if(diff==1)
         {
-            System.out.println("Кількість балів: " + hero.get_marks());
-            System.out.println("Моральна витримка:" + hero.get_moral_points());
-            System.out.println("Кєшь на кармані: " + hero.get_money());
+            System.out.println("Marks: " + hero.get_marks());
+            System.out.println("MoralPoint:" + hero.get_moral_points());
+            System.out.println("Money: " + hero.get_money());
         }
         if(diff==2)
         {
-            System.out.println("Кількість балів: " + hero.get_marks());
-            System.out.println("Моральна витримка:" + hero.get_moral_points());
-            System.out.println("Кєшь на кармані: " + hero.get_money());
+            System.out.println("Marks: " + hero.get_marks());
+            System.out.println("MoralPoint:" + hero.get_moral_points());
+            System.out.println("Money: " + hero.get_money());
         }
         if(diff==3)
         {
-            System.out.println("Кількість балів: " + hero.get_marks());
-            System.out.println("Моральна витримка:" + hero.get_moral_points());
-            System.out.println("Кєшь на кармані: " + hero.get_money());
+            System.out.println("Marks: " + hero.get_marks());
+            System.out.println("MoralPoint:" + hero.get_moral_points());
+            System.out.println("Money: " + hero.get_money());
         }
     }
 
@@ -32,10 +32,10 @@ public class WindowCharacter {
     {
 
         System.out.println ("\nName: " + hero.get_Name()+" "+
-        "sex: "+ hero.get_sex()+ " "+
-        "Marks: " + hero.get_marks()+ " " +
-        "Moral points:" + hero.get_moral_points()+ " "+
-        "Money: " + hero.get_money());
+                "Sex: "+ hero.get_sex()+ " "+
+                "Marks: " + hero.get_marks()+ " " +
+                "MoralPoints:" + hero.get_moral_points()+ " "+
+                "Money: " + hero.get_money());
 
 
     }

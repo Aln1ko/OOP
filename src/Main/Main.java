@@ -13,8 +13,7 @@ public class Main
 
         Scanner scanner = new Scanner(System.in);
         Manager manager = new Manager();
-        //HashMap<String,Function> map = new HashMap<String,Function>();
-        //map.put("Start_Game",manager.startNewGame());
+
 
 
         String input ;
@@ -44,6 +43,8 @@ public class Main
             }
         }
         while(!input.equals("3"));
+
+
 
 
 
