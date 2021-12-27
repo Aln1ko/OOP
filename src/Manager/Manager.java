@@ -19,6 +19,7 @@ public class Manager
     Shop shop = new Shop();
     Scanner scanner = new Scanner(System.in);
     MyFLWorker myFilesWorker = new MyFLWorker();
+    EndGame endGame = new EndGame();
 
     public void WriteMainMenu()
     {
@@ -49,7 +50,7 @@ public class Manager
     {
         if (hero.get_marks() < 0 || hero.get_money() < 0 || hero.get_moral_points() < 0);
         {
-            System.out.println("Game over");
+           endGame.EndGameBeforeLoss(hero);
         }
     }
 
@@ -65,7 +66,7 @@ public class Manager
     {
        Scanner scanner = new Scanner(System.in);
        String input;
-       int number_of_step =0;
+       
 
        do {
            WriteGameMenu();
@@ -79,28 +80,38 @@ public class Manager
                    WriteRestMenu();
                    input = scanner.nextLine();
                    Rest_choose(input);
+                   proverka(hero);
                    WindowCharacter.Window(hero);
                    System.out.println("");
+                   hero.set_number_of_step(hero.get_number_of_step()+1);
+
 
                    break;
+
                case "2":
                    WindowCharacter.Window(hero);
                    System.out.println("");
                    WriteStudyMenu();
                    input = scanner.nextLine();
                    Study_choose(input);
+                   proverka(hero);
                    WindowCharacter.Window(hero);
                    System.out.println("");
+                   hero.set_number_of_step(hero.get_number_of_step()+1);
 
                    break;
+
                case "3":
                    WindowCharacter.Window(hero);
                    System.out.println("");
                    WriteWorkMenu();
                    input =scanner.nextLine();
                    Work_choose(input);
+                   proverka(hero);
                    WindowCharacter.Window(hero);
                    System.out.println("");
+                   hero.set_number_of_step(hero.get_number_of_step()+1);
+
 
                    break;
 
@@ -110,10 +121,14 @@ public class Manager
                    WriteShopMenu();
                    input = scanner.nextLine();
                    Shop_choose(input);
+                   proverka(hero);
                    WindowCharacter.Window(hero);
                    System.out.println("");
+                   hero.set_number_of_step(hero.get_number_of_step()+1);
+
 
                    break;
+
                case"0":
 
                    break;
@@ -121,7 +136,6 @@ public class Manager
                default:
                    System.out.println("Command not recognized, please try again");
 
-                number_of_step++;
            }
 
        }while(!input.equals("0"));

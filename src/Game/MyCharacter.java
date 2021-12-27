@@ -7,6 +7,7 @@ public class MyCharacter
     private int marks;
     private int moral_points;
     private String sex;
+    private int number_of_step = 0;
 
     public MyCharacter(String name, String sex)
     {
@@ -16,6 +17,10 @@ public class MyCharacter
 
     public MyCharacter()
     {}
+
+    public int get_number_of_step(){return number_of_step;}
+
+    public void set_number_of_step(int number_of_step){this.number_of_step = number_of_step;}
 
     public String get_Name(){return Name;}
 

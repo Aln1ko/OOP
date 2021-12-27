@@ -35,7 +35,8 @@ public class WindowCharacter {
                 "Sex: "+ hero.get_sex()+ " "+
                 "Marks: " + hero.get_marks()+ " " +
                 "MoralPoints:" + hero.get_moral_points()+ " "+
-                "Money: " + hero.get_money());
+                "Money: " + hero.get_money() + " "+"Number of step: " +
+                hero.get_number_of_step());
 
 
     }
