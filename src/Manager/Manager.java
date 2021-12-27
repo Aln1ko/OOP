@@ -79,6 +79,8 @@ public class Manager
                    WriteRestMenu();
                    input = scanner.nextLine();
                    Rest_choose(input);
+                   WindowCharacter.Window(hero);
+                   System.out.println("");
 
                    break;
                case "2":
@@ -87,6 +89,8 @@ public class Manager
                    WriteStudyMenu();
                    input = scanner.nextLine();
                    Study_choose(input);
+                   WindowCharacter.Window(hero);
+                   System.out.println("");
 
                    break;
                case "3":
@@ -95,6 +99,8 @@ public class Manager
                    WriteWorkMenu();
                    input =scanner.nextLine();
                    Work_choose(input);
+                   WindowCharacter.Window(hero);
+                   System.out.println("");
 
                    break;
 
@@ -104,6 +110,8 @@ public class Manager
                    WriteShopMenu();
                    input = scanner.nextLine();
                    Shop_choose(input);
+                   WindowCharacter.Window(hero);
+                   System.out.println("");
 
                    break;
                case"0":

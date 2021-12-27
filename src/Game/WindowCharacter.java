@@ -31,7 +31,7 @@ public class WindowCharacter {
     public static void Window (MyCharacter hero)
     {
 
-        System.out.println ("Name: " + hero.get_Name()+" "+
+        System.out.println ("\nName: " + hero.get_Name()+" "+
         "sex: "+ hero.get_sex()+ " "+
         "Marks: " + hero.get_marks()+ " " +
         "Moral points:" + hero.get_moral_points()+ " "+
