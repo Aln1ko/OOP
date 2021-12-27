@@ -43,7 +43,7 @@ public class Main
                     System.out.println("Command not recognized, please try again");
             }
         }
-        while(!input.equals("4"));
+        while(!input.equals("3"));
 
 
 

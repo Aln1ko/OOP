@@ -4,6 +4,7 @@ package Manager;
 
 import Game.*;
 import Menu.*;
+import MyFLWorker.*;
 
 import java.util.Scanner;
 
@@ -17,7 +18,7 @@ public class Manager
     Study study = new Study();
     Shop shop = new Shop();
     Scanner scanner = new Scanner(System.in);
-    MyFWorker myFilesWorker = new MyFWorker();
+    MyFLWorker myFilesWorker = new MyFLWorker();
 
     public void WriteMainMenu()
     {
@@ -70,39 +71,37 @@ public class Manager
            WriteGameMenu();
            input = scanner.nextLine();
 
-
-
            switch (input)
            {
                case "1":
-                   WriteRestMenu();
-                   System.out.println("");
                    WindowCharacter.Window(hero);
+                   System.out.println("");
+                   WriteRestMenu();
                    input = scanner.nextLine();
                    Rest_choose(input);
 
                    break;
                case "2":
-                   WriteStudyMenu();
-                   System.out.println("");
                    WindowCharacter.Window(hero);
+                   System.out.println("");
+                   WriteStudyMenu();
                    input = scanner.nextLine();
                    Study_choose(input);
 
                    break;
                case "3":
-                   WriteWorkMenu();
-                   System.out.println("");
                    WindowCharacter.Window(hero);
+                   System.out.println("");
+                   WriteWorkMenu();
                    input =scanner.nextLine();
                    Work_choose(input);
 
                    break;
 
                case"4":
-                   WriteShopMenu();
-                   System.out.println("");
                    WindowCharacter.Window(hero);
+                   System.out.println("");
+                   WriteShopMenu();
                    input = scanner.nextLine();
                    Shop_choose(input);
 

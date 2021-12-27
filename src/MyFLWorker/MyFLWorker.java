@@ -1,3 +1,5 @@
+package MyFLWorker;
+
 import Game.MyCharacter;
 
 import java.io.*;
