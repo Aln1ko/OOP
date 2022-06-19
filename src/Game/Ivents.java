@@ -12,6 +12,7 @@ public class Ivents
          {
             System.out.println("RandIvent: Make KP Boxonov");
             RandomIvent  make_KP ;
+
             hero.set_number_of_step(hero.get_number_of_step()+1);
          }
          else

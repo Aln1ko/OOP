@@ -22,15 +22,16 @@ public class Manager
     EndGame endGame = new EndGame();
     Ivents ivents = new Ivents();
 
+    int vivod =2;
     public void WriteMainMenu()
     {
-        MainMenu.create_menu();
+        MainMenu.create_menu(vivod);
     }
-    public void WriteGameMenu(){GameMenu.create_menu();}
-    public void WriteWorkMenu(){WorkMenu.create_menu();}
-    public void WriteStudyMenu(){StudyMenu.create_menu();}
-    public void WriteRestMenu(){RestMenu.create_menu();}
-    public void WriteShopMenu(){ShopMenu.create_menu();}
+    public void WriteGameMenu(){GameMenu.create_menu(vivod);}
+    public void WriteWorkMenu(){WorkMenu.create_menu(vivod);}
+    public void WriteStudyMenu(){StudyMenu.create_menu(vivod);}
+    public void WriteRestMenu(){RestMenu.create_menu(vivod);}
+    public void WriteShopMenu(){ShopMenu.create_menu(vivod);}
 
     public void ivent_on_step(MyCharacter hero)
     {
@@ -41,7 +42,7 @@ public class Manager
 
     }
 
-    public void startNewGame()
+    public void startNewGame(int vivod)
     {
         String name;
         String sex;
