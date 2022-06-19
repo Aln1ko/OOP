@@ -14,17 +14,28 @@ public class Main
         Scanner scanner = new Scanner(System.in);
         Manager manager = new Manager();
 
-
-
+        System.out.println("Do you want to play in window or in console(1-window,2-console)");
         String input ;
+        input = scanner.nextLine();
+        int vivod = 0;
+
+        if(input.equals("1"))
+        {
+            vivod = 1;
+        }
+        else
+        //{}все что снизу по идеи в єти скобки или как-то инпут приравнивать к графике
+            vivod = 2;
+
         do {
             manager.WriteMainMenu();
             input = scanner.nextLine();
 
+
             switch (input)
             {
                 case "1":
-                    manager.startNewGame();
+                    manager.startNewGame(vivod);
                     manager.game_process();
                     break;
 
