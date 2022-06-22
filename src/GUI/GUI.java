@@ -1,6 +1,9 @@
 package GUI;
 
 
+import Game.*;
+import Manager.*;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,12 +13,36 @@ import javax.swing.*;
 
 public class GUI{
 
+    public static void gui(Manager manager, MyCharacter hero) {
+        final boolean[] gameStatus = {false};
+        ChangeAtributs changeAtributs = new ChangeAtributs();
 
-    public static void gui(String[] args) {
         JFrame frame = new JFrame("My window");
         frame.setSize(800 ,600);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
+
+        JFrame loss = new JFrame("LOSS");
+        loss.setSize(400,300);
+        loss.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        loss.setLocationRelativeTo(null);
+        loss.setLayout(new GridLayout(2,1));
+        JPanel loss1 = new JPanel();
+        JPanel loss2 = new JPanel();
+        loss.add(loss1);
+        loss.add(loss2);
+        JButton buttonLoss = new Buttons("OK");
+        buttonLoss.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                loss.dispose();
+                frame.dispose();
+            }
+        });
+        JLabel labelLoss = new JLabel("YOU LOSS (one o the points < 0)");
+        loss1.add(labelLoss);
+        loss2.add(labelLoss);
+
 
         frame.setLayout(new GridLayout(3,1));
         JPanel panel1 = new JPanel();
@@ -59,8 +86,9 @@ public class GUI{
         vivod5.setFont(f1);
         vivod6.setFont(f1);
 
+
         button3.addActionListener(new ActionListener() {//нужно сюда дописать сохранение в файл может вызываться когда
-            //персонаж ещё не создан
+            //manager.continueOldGame();
             @Override
             public void actionPerformed(ActionEvent e) {
                 frame.dispose();
@@ -134,9 +162,17 @@ public class GUI{
                 }
                 else
                 {
-                    vivod1.setText( "Name " + name.getText());//это нужно будет убрать и записывать данные
-                    vivod2.setText("Sex " + sex.getText());//в классе герой сделал так чтобы был хоть какой-то вывод
-
+                    Difficult_Game temp = new Difficult_Game();
+                    //hero(name.getText(),sex.getText(),difficult.getText());
+                    hero.set_Name(name.getText());
+                    hero.set_sex(sex.getText());
+                    temp.fill_difficult(hero,Integer.parseInt(difficult.getText()));
+                    vivod1.setText( "Name " + hero.get_Name());//это нужно будет убрать и записывать данные
+                    vivod2.setText("Sex " + hero.get_sex());//в классе герой сделал так чтобы был хоть какой-то вывод
+                    vivod3.setText("Marks " + hero.get_marks());//в классе герой сделал так чтобы был хоть какой-то вывод
+                    vivod4.setText("Moral points " + hero.get_moral_points());//в классе герой сделал так чтобы был хоть какой-то вывод
+                    vivod5.setText("Money " + hero.get_money());//в классе герой сделал так чтобы был хоть какой-то вывод
+                    vivod6.setText("Number of step " + hero.get_number_of_step());//в классе герой сделал так чтобы был хоть какой-то вывод
 
                     makeScreen(panel1,panel2,panel3,panel4,panel5,panel6,panel7,frame,vivod1,vivod2,vivod3,vivod4,vivod5,vivod6);
 
@@ -148,6 +184,7 @@ public class GUI{
 
                     frame.revalidate();
                     frame.repaint();
+                    manager.proverkaGUI(hero);
                 }
             }
         });
@@ -157,11 +194,12 @@ public class GUI{
         JButton button43 = new Buttons("Drink alchogol");
         JButton button44 = new Buttons("Make gachimuchi");
 
-        vivod3.setText("Marks:2");
-        vivod4.setText("Moral points:3");
-        vivod5.setText("Money:9");
-        vivod6.setText("Number of step:7");
+        vivod3.setText("Name:"+hero.get_Name());
+        vivod4.setText("Moral points:" + hero.get_moral_points());
+        vivod5.setText("Money:" + hero.get_money());
+        vivod6.setText("Number of step:"+ hero.get_number_of_step());
 
+        Rest a = new Rest();
 
         button4.addActionListener(new ActionListener() {
             @Override
@@ -183,6 +221,11 @@ public class GUI{
             @Override
             public void actionPerformed(ActionEvent e) {
                 //тут действие соответсвующие тому что написанно на кнопке
+                a.go_to_polyana(hero);
+                vivod3.setText("Marks: " + Integer.toString(hero.get_marks()));
+                vivod4.setText("Moral points: " + Integer.toString(hero.get_moral_points()));
+                vivod5.setText("Money: " + Integer.toString(hero.get_money()));
+                vivod6.setText("Number of step: " + Integer.toString(hero.get_number_of_step()));
                 makeScreen(panel1,panel2,panel3,panel4,panel5,panel6,panel7,frame,vivod1,vivod2,vivod3,vivod4,vivod5,vivod6);
                 panel1.add(button4);
                 panel2.add(button5);
@@ -191,6 +234,12 @@ public class GUI{
                 panel5.add(button3);
                 frame.revalidate();
                 frame.repaint();
+                gameStatus[0] =manager.proverkaGUI(hero);
+                if(gameStatus[0]) {
+                    loss.setVisible(true);
+                }
+
+
             }
         });
 
@@ -198,6 +247,11 @@ public class GUI{
             @Override
             public void actionPerformed(ActionEvent e) {
                 //тут действие соответсвующие тому что написанно на кнопке
+                a.make_cart_be_on_tree(hero);
+                vivod3.setText("Marks: " + Integer.toString(hero.get_marks()));
+                vivod4.setText("Moral points: " + Integer.toString(hero.get_moral_points()));
+                vivod5.setText("Money: " + Integer.toString(hero.get_money()));
+                vivod6.setText("Number of step: " + Integer.toString(hero.get_number_of_step()));
                 makeScreen(panel1,panel2,panel3,panel4,panel5,panel6,panel7,frame,vivod1,vivod2,vivod3,vivod4,vivod5,vivod6);
                 panel1.add(button4);
                 panel2.add(button5);
@@ -206,6 +260,13 @@ public class GUI{
                 panel5.add(button3);
                 frame.revalidate();
                 frame.repaint();
+                gameStatus[0] =manager.proverkaGUI(hero);
+                if(gameStatus[0]) {
+                    loss.setVisible(true);
+                }
+
+
+
             }
         });
 
@@ -213,6 +274,11 @@ public class GUI{
             @Override
             public void actionPerformed(ActionEvent e) {
                 //тут действие соответсвующие тому что написанно на кнопке
+                a.drink_alchogol(hero);
+                vivod3.setText("Marks: " + Integer.toString(hero.get_marks()));
+                vivod4.setText("Moral points: " + Integer.toString(hero.get_moral_points()));
+                vivod5.setText("Money: " + Integer.toString(hero.get_money()));
+                vivod6.setText("Number of step: " + Integer.toString(hero.get_number_of_step()));
                 makeScreen(panel1,panel2,panel3,panel4,panel5,panel6,panel7,frame,vivod1,vivod2,vivod3,vivod4,vivod5,vivod6);
                 panel1.add(button4);
                 panel2.add(button5);
@@ -221,6 +287,13 @@ public class GUI{
                 panel5.add(button3);
                 frame.revalidate();
                 frame.repaint();
+                gameStatus[0] =manager.proverkaGUI(hero);
+                if(gameStatus[0]) {
+                    loss.setVisible(true);
+                }
+
+
+
             }
         });
 
@@ -228,6 +301,11 @@ public class GUI{
             @Override
             public void actionPerformed(ActionEvent e) {
                 //тут действие соответсвующие тому что написанно на кнопке
+                a.make_gachimuchi(hero);
+                vivod3.setText("Marks: " + Integer.toString(hero.get_marks()));
+                vivod4.setText("Moral points: " + Integer.toString(hero.get_moral_points()));
+                vivod5.setText("Money: " + Integer.toString(hero.get_money()));
+                vivod6.setText("Number of step: " + Integer.toString(hero.get_number_of_step()));
                 makeScreen(panel1,panel2,panel3,panel4,panel5,panel6,panel7,frame,vivod1,vivod2,vivod3,vivod4,vivod5,vivod6);
                 panel1.add(button4);
                 panel2.add(button5);
@@ -236,8 +314,16 @@ public class GUI{
                 panel5.add(button3);
                 frame.revalidate();
                 frame.repaint();
+                gameStatus[0] =manager.proverkaGUI(hero);
+                if(gameStatus[0]) {
+                    loss.setVisible(true);
+                }
+
+
             }
         });
+
+        Study b = new Study();
 
         JButton button51 = new Buttons("Make lab");
         JButton button52 = new Buttons("Make homework");
@@ -263,6 +349,11 @@ public class GUI{
             @Override
             public void actionPerformed(ActionEvent e) {
                 //тут действие соответсвующие тому что написанно на кнопке
+                b.make_lab(hero);
+                vivod3.setText("Marks: " + Integer.toString(hero.get_marks()));
+                vivod4.setText("Moral points: " + Integer.toString(hero.get_moral_points()));
+                vivod5.setText("Money: " + Integer.toString(hero.get_money()));
+                vivod6.setText("Number of step: " + Integer.toString(hero.get_number_of_step()));
                 makeScreen(panel1,panel2,panel3,panel4,panel5,panel6,panel7,frame,vivod1,vivod2,vivod3,vivod4,vivod5,vivod6);
                 panel1.add(button4);
                 panel2.add(button5);
@@ -271,6 +362,12 @@ public class GUI{
                 panel5.add(button3);
                 frame.revalidate();
                 frame.repaint();
+                gameStatus[0] =manager.proverkaGUI(hero);
+                if(gameStatus[0]) {
+                    loss.setVisible(true);
+                }
+
+
             }
         });
 
@@ -278,6 +375,11 @@ public class GUI{
             @Override
             public void actionPerformed(ActionEvent e) {
                 //тут действие соответсвующие тому что написанно на кнопке
+                b.make_homework(hero);
+                vivod3.setText("Marks: " + Integer.toString(hero.get_marks()));
+                vivod4.setText("Moral points: " + Integer.toString(hero.get_moral_points()));
+                vivod5.setText("Money: " + Integer.toString(hero.get_money()));
+                vivod6.setText("Number of step: " + Integer.toString(hero.get_number_of_step()));
                 makeScreen(panel1,panel2,panel3,panel4,panel5,panel6,panel7,frame,vivod1,vivod2,vivod3,vivod4,vivod5,vivod6);
                 panel1.add(button4);
                 panel2.add(button5);
@@ -286,6 +388,12 @@ public class GUI{
                 panel5.add(button3);
                 frame.revalidate();
                 frame.repaint();
+                gameStatus[0] =manager.proverkaGUI(hero);
+                if(gameStatus[0]) {
+                    loss.setVisible(true);
+                }
+
+
             }
         });
 
@@ -293,6 +401,11 @@ public class GUI{
             @Override
             public void actionPerformed(ActionEvent e) {
                 //тут действие соответсвующие тому что написанно на кнопке
+                b.go_to_university(hero);
+                vivod3.setText("Marks: " + Integer.toString(hero.get_marks()));
+                vivod4.setText("Moral points: " + Integer.toString(hero.get_moral_points()));
+                vivod5.setText("Money: " + Integer.toString(hero.get_money()));
+                vivod6.setText("Number of step: " + Integer.toString(hero.get_number_of_step()));
                 makeScreen(panel1,panel2,panel3,panel4,panel5,panel6,panel7,frame,vivod1,vivod2,vivod3,vivod4,vivod5,vivod6);
                 panel1.add(button4);
                 panel2.add(button5);
@@ -301,6 +414,12 @@ public class GUI{
                 panel5.add(button3);
                 frame.revalidate();
                 frame.repaint();
+                gameStatus[0] =manager.proverkaGUI(hero);
+                if(gameStatus[0]) {
+                    loss.setVisible(true);
+                }
+
+
             }
         });
 
@@ -308,6 +427,11 @@ public class GUI{
             @Override
             public void actionPerformed(ActionEvent e) {
                 //тут действие соответсвующие тому что написанно на кнопке
+                b.napisat_kursovu(hero);
+                vivod3.setText("Marks: " + Integer.toString(hero.get_marks()));
+                vivod4.setText("Moral points: " + Integer.toString(hero.get_moral_points()));
+                vivod5.setText("Money: " + Integer.toString(hero.get_money()));
+                vivod6.setText("Number of step: " + Integer.toString(hero.get_number_of_step()));
                 makeScreen(panel1,panel2,panel3,panel4,panel5,panel6,panel7,frame,vivod1,vivod2,vivod3,vivod4,vivod5,vivod6);
                 panel1.add(button4);
                 panel2.add(button5);
@@ -316,8 +440,16 @@ public class GUI{
                 panel5.add(button3);
                 frame.revalidate();
                 frame.repaint();
+                gameStatus[0] =manager.proverkaGUI(hero);
+                if(gameStatus[0]) {
+                    loss.setVisible(true);
+                }
+
+
             }
         });
+
+        Work c = new Work();
 
         JButton button61 = new Buttons("Go to dance");
         JButton button62 = new Buttons("Do junior work");
@@ -343,6 +475,11 @@ public class GUI{
             @Override
             public void actionPerformed(ActionEvent e) {
                 //тут действие соответсвующие тому что написанно на кнопке
+                c.go_to_dance(hero);
+                vivod3.setText("Marks: " + Integer.toString(hero.get_marks()));
+                vivod4.setText("Moral points: " + Integer.toString(hero.get_moral_points()));
+                vivod5.setText("Money: " + Integer.toString(hero.get_money()));
+                vivod6.setText("Number of step: " + Integer.toString(hero.get_number_of_step()));
                 makeScreen(panel1,panel2,panel3,panel4,panel5,panel6,panel7,frame,vivod1,vivod2,vivod3,vivod4,vivod5,vivod6);
                 panel1.add(button4);
                 panel2.add(button5);
@@ -351,6 +488,12 @@ public class GUI{
                 panel5.add(button3);
                 frame.revalidate();
                 frame.repaint();
+                gameStatus[0] =manager.proverkaGUI(hero);
+                if(gameStatus[0]) {
+                    loss.setVisible(true);
+                }
+
+
             }
         });
 
@@ -358,6 +501,11 @@ public class GUI{
             @Override
             public void actionPerformed(ActionEvent e) {
                 //тут действие соответсвующие тому что написанно на кнопке
+                c.coder_work(hero);
+                vivod3.setText("Marks: " + Integer.toString(hero.get_marks()));
+                vivod4.setText("Moral points: " + Integer.toString(hero.get_moral_points()));
+                vivod5.setText("Money: " + Integer.toString(hero.get_money()));
+                vivod6.setText("Number of step: " + Integer.toString(hero.get_number_of_step()));
                 makeScreen(panel1,panel2,panel3,panel4,panel5,panel6,panel7,frame,vivod1,vivod2,vivod3,vivod4,vivod5,vivod6);
                 panel1.add(button4);
                 panel2.add(button5);
@@ -366,6 +514,12 @@ public class GUI{
                 panel5.add(button3);
                 frame.revalidate();
                 frame.repaint();
+                gameStatus[0] =manager.proverkaGUI(hero);
+                if(gameStatus[0]) {
+                    loss.setVisible(true);
+                }
+
+
             }
         });
 
@@ -373,6 +527,11 @@ public class GUI{
             @Override
             public void actionPerformed(ActionEvent e) {
                 //тут действие соответсвующие тому что написанно на кнопке
+                c.rozdavat_listovki(hero);
+                vivod3.setText("Marks: " + Integer.toString(hero.get_marks()));
+                vivod4.setText("Moral points: " + Integer.toString(hero.get_moral_points()));
+                vivod5.setText("Money: " + Integer.toString(hero.get_money()));
+                vivod6.setText("Number of step: " + Integer.toString(hero.get_number_of_step()));
                 makeScreen(panel1,panel2,panel3,panel4,panel5,panel6,panel7,frame,vivod1,vivod2,vivod3,vivod4,vivod5,vivod6);
                 panel1.add(button4);
                 panel2.add(button5);
@@ -381,6 +540,12 @@ public class GUI{
                 panel5.add(button3);
                 frame.revalidate();
                 frame.repaint();
+                gameStatus[0] =manager.proverkaGUI(hero);
+                if(gameStatus[0]) {
+                    loss.setVisible(true);
+                }
+
+
             }
         });
 
@@ -388,6 +553,11 @@ public class GUI{
             @Override
             public void actionPerformed(ActionEvent e) {
                 //тут действие соответсвующие тому что написанно на кнопке
+                c.senior_work(hero);
+                vivod3.setText("Marks: " + Integer.toString(hero.get_marks()));
+                vivod4.setText("Moral points: " + Integer.toString(hero.get_moral_points()));
+                vivod5.setText("Money: " + Integer.toString(hero.get_money()));
+                vivod6.setText("Number of step: " + Integer.toString(hero.get_number_of_step()));
                 makeScreen(panel1,panel2,panel3,panel4,panel5,panel6,panel7,frame,vivod1,vivod2,vivod3,vivod4,vivod5,vivod6);
                 panel1.add(button4);
                 panel2.add(button5);
@@ -396,8 +566,16 @@ public class GUI{
                 panel5.add(button3);
                 frame.revalidate();
                 frame.repaint();
+                gameStatus[0] =manager.proverkaGUI(hero);
+                if(gameStatus[0]) {
+                    loss.setVisible(true);
+                }
+
+
             }
         });
+
+        Shop d = new Shop();
 
         JButton button71 = new Buttons("Buy coursework");
         JButton button72 = new Buttons("Buy diploma");
@@ -423,6 +601,11 @@ public class GUI{
             @Override
             public void actionPerformed(ActionEvent e) {
                 //тут действие соответсвующие тому что написанно на кнопке
+                d.buy_coursework(hero);
+                vivod3.setText("Marks: " + Integer.toString(hero.get_marks()));
+                vivod4.setText("Moral points: " + Integer.toString(hero.get_moral_points()));
+                vivod5.setText("Money: " + Integer.toString(hero.get_money()));
+                vivod6.setText("Number of step: " + Integer.toString(hero.get_number_of_step()));
                 makeScreen(panel1,panel2,panel3,panel4,panel5,panel6,panel7,frame,vivod1,vivod2,vivod3,vivod4,vivod5,vivod6);
                 panel1.add(button4);
                 panel2.add(button5);
@@ -431,6 +614,12 @@ public class GUI{
                 panel5.add(button3);
                 frame.revalidate();
                 frame.repaint();
+                gameStatus[0] =manager.proverkaGUI(hero);
+                if(gameStatus[0]) {
+                    loss.setVisible(true);
+                }
+
+
             }
         });
 
@@ -438,6 +627,11 @@ public class GUI{
             @Override
             public void actionPerformed(ActionEvent e) {
                 //тут действие соответсвующие тому что написанно на кнопке
+                d.buy_diploma(hero);
+                vivod3.setText("Marks: " + Integer.toString(hero.get_marks()));
+                vivod4.setText("Moral points: " + Integer.toString(hero.get_moral_points()));
+                vivod5.setText("Money: " + Integer.toString(hero.get_money()));
+                vivod6.setText("Number of step: " + Integer.toString(hero.get_number_of_step()));
                 makeScreen(panel1,panel2,panel3,panel4,panel5,panel6,panel7,frame,vivod1,vivod2,vivod3,vivod4,vivod5,vivod6);
                 panel1.add(button4);
                 panel2.add(button5);
@@ -446,13 +640,25 @@ public class GUI{
                 panel5.add(button3);
                 frame.revalidate();
                 frame.repaint();
+                gameStatus[0] =manager.proverkaGUI(hero);
+                if(gameStatus[0]) {
+                    loss.setVisible(true);
+                }
+
+
             }
         });
+
 
         button73.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //тут действие соответсвующие тому что написанно на кнопке
+                d.buy_girl(hero);
+                vivod3.setText("Marks: " + Integer.toString(hero.get_marks()));
+                vivod4.setText("Moral points: " + Integer.toString(hero.get_moral_points()));
+                vivod5.setText("Money: " + Integer.toString(hero.get_money()));
+                vivod6.setText("Number of step: " + Integer.toString(hero.get_number_of_step()));
                 makeScreen(panel1,panel2,panel3,panel4,panel5,panel6,panel7,frame,vivod1,vivod2,vivod3,vivod4,vivod5,vivod6);
                 panel1.add(button4);
                 panel2.add(button5);
@@ -461,6 +667,12 @@ public class GUI{
                 panel5.add(button3);
                 frame.revalidate();
                 frame.repaint();
+                gameStatus[0] =manager.proverkaGUI(hero);
+                if(gameStatus[0]) {
+                    loss.setVisible(true);
+                }
+
+
             }
         });
 
@@ -468,6 +680,11 @@ public class GUI{
             @Override
             public void actionPerformed(ActionEvent e) {
                 //тут действие соответсвующие тому что написанно на кнопке
+                d.buy_drink(hero);
+                vivod3.setText("Marks: " + Integer.toString(hero.get_marks()));
+                vivod4.setText("Moral points: " + Integer.toString(hero.get_moral_points()));
+                vivod5.setText("Money: " + Integer.toString(hero.get_money()));
+                vivod6.setText("Number of step: " + Integer.toString(hero.get_number_of_step()));
                 makeScreen(panel1,panel2,panel3,panel4,panel5,panel6,panel7,frame,vivod1,vivod2,vivod3,vivod4,vivod5,vivod6);
                 panel1.add(button4);
                 panel2.add(button5);
@@ -476,9 +693,42 @@ public class GUI{
                 panel5.add(button3);
                 frame.revalidate();
                 frame.repaint();
+                gameStatus[0] =manager.proverkaGUI(hero);
+                if(gameStatus[0]) {
+                    loss.setVisible(true);
+                }
+
+
             }
         });
 
+        button2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                manager.continueOldGame();
+                vivod1.setText("Name: " + hero.get_Name());
+                vivod2.setText("Sex: " + hero.get_sex());
+                vivod3.setText("Marks: " + Integer.toString(hero.get_marks()));
+                vivod4.setText("Moral points: " + Integer.toString(hero.get_moral_points()));
+                vivod5.setText("Money: " + Integer.toString(hero.get_money()));
+                vivod6.setText("Number of step: " + Integer.toString(hero.get_number_of_step()));
+                makeScreen(panel1,panel2,panel3,panel4,panel5,panel6,panel7,frame,vivod1,vivod2,vivod3,vivod4,vivod5,vivod6);
+                panel1.add(button4);
+                panel2.add(button5);
+                panel3.add(button6);
+                panel4.add(button7);
+                panel5.add(button3);
+                frame.revalidate();
+                frame.repaint();
+                gameStatus[0] =manager.proverkaGUI(hero);
+                if(gameStatus[0]) {
+                    loss.setVisible(true);
+                }
+
+
+            }
+        });
 
 
 
@@ -524,6 +774,26 @@ public class GUI{
         panel6.add(vivod5);
         panel6.add(vivod6);
     }
+
+    /*public static void EndGameBeforeLossGUI(JPanel panel1,JPanel panel2,JPanel panel3,JPanel panel4,JPanel panel5,JPanel
+            panel6,JPanel panel7
+            ,JFrame frame,JLabel vivod1,JLabel vivod2,JLabel vivod3,JLabel vivod4,JLabel vivod5,JLabel vivod6,MyCharacter hero){
+        vivod1.setText("Name: " + hero.get_Name());
+        vivod2.setText("Sex: " + hero.get_sex());
+        vivod3.setText("Marks: " + Integer.toString(hero.get_marks()));
+        vivod4.setText("Moral points: " + Integer.toString(hero.get_moral_points()));
+        vivod5.setText("Money: " + Integer.toString(hero.get_money()));
+        vivod6.setText("Number of step: " + Integer.toString(hero.get_number_of_step()));
+        makeScreen(panel1,panel2,panel3,panel4,panel5,panel6,panel7,frame,vivod1,vivod2,vivod3,vivod4,vivod5,vivod6);
+        panel1.add(button4);
+        panel2.add(button5);
+        panel3.add(button6);
+        panel4.add(button7);
+        panel5.add(button3);
+        frame.revalidate();
+        frame.repaint();
+    }*/
+
 
 }
 

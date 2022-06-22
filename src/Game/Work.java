@@ -9,12 +9,14 @@ public class Work
         changeAtributs.change_money(hero, 50);
         changeAtributs.change_marks(hero, 0);
         changeAtributs.change_moral_points(hero, -30);
+        changeAtributs.change_number_of_steps(hero,+1);
     }
 
     public void coder_work(MyCharacter hero) {
         changeAtributs.change_money(hero, 70);
         changeAtributs.change_marks(hero, 10);
         changeAtributs.change_moral_points(hero, -50);
+        changeAtributs.change_number_of_steps(hero,+1);
     }
 
     public void rozdavat_listovki(MyCharacter hero)
@@ -22,6 +24,7 @@ public class Work
         changeAtributs.change_money(hero, 30);
         changeAtributs.change_marks(hero, 0);
         changeAtributs.change_moral_points(hero, -15);
+        changeAtributs.change_number_of_steps(hero,+1);
     }
 
     public int  senior_work(MyCharacter hero)
@@ -34,6 +37,7 @@ public class Work
         changeAtributs.change_money(hero, 100);
         changeAtributs.change_marks(hero, 15);
         changeAtributs.change_moral_points(hero, -40);
+        changeAtributs.change_number_of_steps(hero,+1);
         return 1;
     }
 

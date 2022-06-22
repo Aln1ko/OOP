@@ -2,10 +2,14 @@ package Manager;
 
 //import MyFilesWorker.MyFilesWorker;
 
+import GUI.GUI;
 import Game.*;
 import Menu.*;
 import MyFLWorker.*;
 
+import javax.swing.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 
@@ -47,14 +51,22 @@ public class Manager
         String name;
         String sex;
         String difficult;
-        System.out.println("Choose your name: ");
-        name = scanner.nextLine();
-        System.out.println("Choose your sex: ");
-        sex  = scanner.nextLine();
-        System.out.println("Choose difficult of the game 1, 2 or 3 (1-All stats-50,2-All stats-30,3-All stats-10)");
-        difficult = scanner.nextLine();
-        create_hero(name,sex,difficult);
+        ArrayList <String> temp = new ArrayList<String>();
+        temp.add("Choose your name: ");
+        temp.add("Choose your sex: ");
+        temp.add("Choose difficult of the game 1, 2 or 3 (1-All stats-50,2-All stats-30,3-All stats-10)");
+        if (vivod == 1) {
 
+        }
+        if (vivod == 2) {
+            System.out.println(temp.get(0));
+            name = scanner.nextLine();
+            System.out.println(temp.get(1));
+            sex = scanner.nextLine();
+            System.out.println(temp.get(2));
+            difficult = scanner.nextLine();
+            create_hero(name, sex, difficult);
+        }
     }
 
     public void proverka(MyCharacter hero)
@@ -64,6 +76,16 @@ public class Manager
         {
            endGame.EndGameBeforeLoss(hero);
         }
+    }
+
+    public boolean proverkaGUI(MyCharacter hero){
+        if (hero.get_marks() < 0 || hero.get_money() < 0
+                || hero.get_moral_points() < 0)
+        {
+            return true;
+        }
+        else
+            return false;
     }
 
     public void create_hero(String name , String sex, String difficult )

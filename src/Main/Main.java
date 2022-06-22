@@ -1,10 +1,14 @@
 package Main;
+import GUI.*;
+import Game.MyCharacter;
 import Manager.*;
 
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Scanner;
 import java.util.function.Function;
+
+import static GUI.GUI.gui;
 
 
 public class Main
@@ -22,43 +26,56 @@ public class Main
         if(input.equals("1"))
         {
             vivod = 1;
+            MyCharacter hero = new MyCharacter();
+            gui(manager,hero);
+
         }
-        else
-        //{}все что снизу по идеи в єти скобки или как-то инпут приравнивать к графике
+        else{
             vivod = 2;
-
-        do {
-            manager.WriteMainMenu();
-            input = scanner.nextLine();
-
-
-            switch (input)
-            {
-                case "1":
-                    manager.startNewGame(vivod);
-                    manager.game_process();
-                    break;
-
-                case "2":
-                    manager.continueOldGame();
-                    manager.game_process();
-                    break;
+            do {
+                manager.WriteMainMenu();
+                input = scanner.nextLine();
 
 
-                case "3" :
-                    manager.saveFile();
-                    break;
+                switch (input)
+                {
+                    case "1":
+                        manager.startNewGame(2);
+                        manager.game_process();
+                        break;
 
-                default:
-                    System.out.println("Command not recognized, please try again");
+                    case "2":
+                        manager.continueOldGame();
+                        manager.game_process();
+                        break;
+
+
+                    case "3" :
+                        manager.saveFile();
+                        break;
+
+                    default:
+                        System.out.println("Command not recognized, please try again");
+                }
             }
+            while(!input.equals("3"));
         }
-        while(!input.equals("3"));
-
 
 
 
 
     }
+
+    public static void consoleStart(String input){
+
+        Scanner scanner = new Scanner(System.in);
+        Manager manager = new Manager();
+
+
+    }
+     public static void guiStart(){
+
+    }
+
 }
 

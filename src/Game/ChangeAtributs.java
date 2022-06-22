@@ -32,6 +32,11 @@ public class ChangeAtributs implements  InterfaceChangeAtributs
         my_moral_points += moral_points;
         hero.set_moral_points(my_moral_points);
     }
+    public void change_number_of_steps(MyCharacter hero, int number_of_steps){
+        int my_number_of_steps = hero.get_number_of_step();
+        my_number_of_steps += number_of_steps;
+        hero.set_number_of_step(my_number_of_steps);
+    }
 }
 
 

@@ -11,6 +11,7 @@ public  class Shop {
         changeAtributs.change_money(hero,-300);
         changeAtributs.change_marks(hero,+500);
         changeAtributs.change_moral_points(hero,+100);
+        changeAtributs.change_number_of_steps(hero,+1);
     }
 
     public void buy_diploma (MyCharacter hero)// купити диплом
@@ -18,6 +19,7 @@ public  class Shop {
         changeAtributs.change_money(hero,-3000);
         changeAtributs.change_marks(hero,+5000);
         changeAtributs.change_moral_points(hero,+1000);
+        changeAtributs.change_number_of_steps(hero,+1);
     }
 
     public void buy_girl  (MyCharacter hero)// купити дівчину на годину
@@ -25,6 +27,7 @@ public  class Shop {
         changeAtributs.change_money(hero,-150);
         changeAtributs.change_marks(hero,-25);
         changeAtributs.change_moral_points(hero,+500);
+        changeAtributs.change_number_of_steps(hero,+1);
     }
 
     public void buy_drink (MyCharacter hero) // купити алкоголь
@@ -32,6 +35,7 @@ public  class Shop {
         changeAtributs.change_money(hero,-50);
         changeAtributs.change_marks(hero,-100);
         changeAtributs.change_moral_points(hero,+300);
+        changeAtributs.change_number_of_steps(hero,+1);
     }
        //System.out.println ();
 
